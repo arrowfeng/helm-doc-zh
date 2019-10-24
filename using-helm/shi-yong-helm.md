@@ -207,23 +207,83 @@ $ helm install -f config.yaml stable/mariadb
 name: value
 ```
 
+多个值使用`,`分隔。如：`--set a=b, c=d`：
 
+```text
+a: b
+c: d
+```
 
+同样也支持更负责的表达式。例如`--set outer.inner=value`可以被转换成这样：
 
+```text
+outer:
+  inner: value
+```
 
+ 列表可使用花括号来表示。例如`--set name={a,b,c}`：
 
+```text
+name:
+- a
+- b
+- c
+```
 
+自 Helm 2.5.0 起，访问列表项可以使用数组索引的语法。例如`--set servers[0].port=80`:
 
+```text
+servers:
+- port: 80
+```
 
+多个值可以以这样的方式设置`--set servers[0].port=80,servers[0].host=example`:
 
+```text
+servers:
+- port: 80
+  host: example
+```
 
+如果你需要在`--set`使用特别的字符。你可以使用反斜杠进行转义；`--set name = "value1\,value2"`:
 
+```text
+name: "value1,value2"
+```
 
+同样，你也可以转义点序列，当在 `charts` 中使用 `toYaml` 函数解析 `annotations`，`labels` 和 `node selectors` 时可能会派上用场。例如：--set nodeSelector."kubernetes\.io./role"=master：
 
+```text
+nodeSelector:
+  kubernetes.io/role: master
+```
 
+使用`--set`很难去表达深层嵌套的数据结构。在进行`values.yaml`文件的格式设计时，开发者通常应该考虑`--set`的用法。
 
+`Helm`将转换使用`--set`设置的某些为整数的值。例如，`--set foo=true`导致`Helm`转换`true`为`int64`类型的数值。万一你想要字符串类型，可以使用`--set`的一个变体`--set-string`。`--set-string foo=true`的结果为字符串`"true"`
 
+`--set-file key=filepath`是`--set`的另一个变体。它读取文件并使用其内容作为值。它的一个示例用例是将多行文本插入值中，而无需处理`YAML`中的缩紧。假如你想使用 5 行 JS 代码创建一个`brigade`工程，你可能需要编写这样的`values.yaml`文件：
 
+```text
+defaultScript: |
+  const {events, Job} = require("brigadier")
+  function run(e, project) {
+    console.log("hello default script")
+  }
+  events.on("run", run)
+```
+
+由于嵌入在`YAML`中，这使你更难使用IDE功能和测试框架编写代码等。相反，你能使用把-`-set-file defaultScript=brigade.js`和`brigade.js`文件结合使用：
+
+```text
+const {events, Job} = require("brigadier")
+function run(e, project) {
+  console.log("hello default script")
+}
+events.on("run", run)
+```
+
+### 多种安装
 
 
 
