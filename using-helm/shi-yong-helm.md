@@ -283,7 +283,144 @@ function run(e, project) {
 events.on("run", run)
 ```
 
-### 多种安装
+### 安装方法
 
+`helm install`命令能从下列源处安装：
 
+* chart 仓库（上述提到的）
+* 本地 chart 压缩包
+* 解压的 chart 目录
+* 完整饿 URL
+
+##  ‘HELM UPGRADE AND ROLLBACK‘：升级一个 Release 或在失败时恢复
+
+当一个新版的 chart 发布时，或者是你想去改变你现在版本的配置，你可以使用`helm upgrade`命令。
+
+它将根据你所提供的信息对已存在的版本进行升级。因为 Kubernetes charts 可能很大和复杂，Helm 尽力进行最小范围的升级。它将只升级上次版本改变的信息。
+
+```text
+$ helm upgrade -f panda.yaml happy-panda stable/mariadb
+Fetched stable/mariadb-0.3.0.tgz to /Users/mattbutcher/Code/Go/src/k8s.io/helm/mariadb-0.3.0.tgz
+happy-panda has been upgraded.
+Last Deployed: Wed Sep 28 12:47:54 2016
+Namespace: default
+Status: DEPLOYED
+```
+
+上面的例子，`happy-panda`版本使用同样的 `chart` 进行升级，不同的是多了一个 YAML 文件：
+
+```text
+mariadbUser: user1
+```
+
+我们能使用helm get values 查看这个新设置是否生效。
+
+```text
+$ helm get values happy-panda
+mariadbUser: user1
+```
+
+`helm get`命令在集群中被用来查看版本信息。正如我们上述所看到的，它向我们展示了来自文件`panda.yaml`版本的新配置值。
+
+如果现在运行的版本遇到什么问题，使用`helm rollback [RELEASE] [REVISION]`可以很容易的回退到之前的版本。
+
+```text
+$ helm rollback happy-panda 1
+```
+
+上面将会回滚到我们`happy-panda`应用的最开始的那个版本。新版本的版本号将会递增。每次安装，升级，回滚，版本号都会加1。最开始的版本总是1。我们能使用`helm history [RELEASE]`查看特定的版本号。
+
+## 安装/升级/回滚有帮助的选项
+
+你可以在安装/升级/回滚的时候指定一些选项设置`Helm`的行为。请注意这不是所有命令行选项。要查看所有选项的描述，只需运行`helm <command> --help`。
+
+* `--timeout`：等待 Kubernetes 命令完成的秒数（默认）为300（5分钟）
+* `--wait`：直到所有 Pod 处于 ready 状态，PVCs 被绑定，Deployments 达到最小 Pod 数（期望数减去`maxUnavailable`）处于 ready 状态和 Services 有 IP 地址（Ingress有负载均衡器），才把这个`release`标记为成功。它将等待`--timeout`设置的时长。如果到达超时时间，`release`将会被标记为`FAILED`。注意：在 Deployment 副本设置为 1 且`maxUnavailable`未设置为 0，在进行滚动更新时，只要最小 Pod 数量处于就绪状态 `--wait`将返回满足 ready 状态的标记。
+* `--no-hooks`：跳过命令的运行时钩子
+* `--recreate-pods`（只对`upgrade`和`rollback`有效）：这个选项将使所有的 pods 被重建（除了属于 deployments 的 Pod）
+
+## ‘HELM DELETE’：删除 RELEASE
+
+当你需要从集群中卸载或者删除一个`release`时，使用`helm delete`命令：
+
+```text
+$ helm delete happy-panda
+```
+
+将从集群中移除这个`release`。使用helm list命令可以查看当前你部署的所有 `release`。
+
+```text
+$ helm list
+NAME           	VERSION	UPDATED                        	STATUS         	CHART
+inky-cat       	1      	Wed Sep 28 12:59:46 2016       	DEPLOYED       	alpine-0.1.0
+```
+
+从上面的输出可以看出，`happy-panda` `release`已经被删除。
+
+但是，`helm` 总是会保存着`releases`所发生的记录。`helm list --deleted`将会展示已经删除的`releases`。helm list --all 将展示所有releases（已经删除的、当前部署的和失败的）：
+
+```text
+⇒  helm list --all
+NAME           	VERSION	UPDATED                        	STATUS         	CHART
+happy-panda   	2      	Wed Sep 28 12:47:54 2016       	DELETED        	mariadb-0.3.0
+inky-cat       	1      	Wed Sep 28 12:59:46 2016       	DEPLOYED       	alpine-0.1.0
+kindred-angelf 	2      	Tue Sep 27 16:16:10 2016       	DELETED        	alpine-0.1.0
+```
+
+因为 Helm 保存了已删除的`releases`记录，所以`release`的 name 不能重复使用。（如果你需要重复使用`release`的名字，你能使用`--replace`选项，它只是重复的使用已存在的`release`并替换它的资源。）
+
+注意，因为`releases`能以这种方式保留，所以你能回滚到已删除的资源并让它重新激活。
+
+## ‘HELM REPO‘：操作仓库
+
+到目前为止，我们已经从`stable`仓库安装了`charts`。但是你还能配置`helm`去使用其他仓库。`helm`在`helm repo`命令下提供了一系列仓库工具集。
+
+使用`helm repo list`可以列出已配置的仓库：
+
+```text
+$ helm repo list
+NAME           	URL
+stable         	https://kubernetes-charts.storage.googleapis.com
+local          	http://localhost:8879/charts
+mumoshu        	https://mumoshu.github.io/charts
+```
+
+使用`helm repo add`可以添加一个新的仓库：
+
+```text
+$ helm repo add dev https://example.com/dev-charts
+```
+
+因为chart仓库变化频繁，通过使用`helm repo update`在任何时间点确保你的`helm client`是最新的。
+
+## 创建你自己的 CHARTS
+
+[Chart Development Guide ](../helm-commands/helm-list.md)展示了怎样开发你自己的`charts`。使用`helm create`命令可以快速创建它。
+
+```text
+$ helm create deis-workflow
+Creating deis-workflow
+```
+
+现在有一个`chart`在`./deis-workflow`目录下。你能编辑它并创建自己的模版。
+
+编辑好你的`chart`之后，你可以运行`helm lint`校验它的格式是否正确。
+
+当是时候去打包`chart`进行发行，你可以运行`helm package`命令：
+
+```text
+$ helm package deis-workflow
+deis-workflow-0.1.0.tgz
+```
+
+并且这个`chart`通过`helm install`能被很容易的安装：
+
+```text
+$ helm install ./deis-workflow-0.1.0.tgz
+...
+```
+
+被归档的`charts`能被上传到`chart`仓库。请参阅`chart`存储服务器的文档以了解如何上传。
+
+注意：`stable`仓库由 [Helm Charts GitHub](https://github.com/helm/charts) 仓库管理。该项目接受`chart`源代码，并（在审核之后）为你打包这些源代码。
 
