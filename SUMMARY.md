@@ -24,6 +24,7 @@
   * [Helm Get](helm-commands/helm-get.md)
   * [Helm Get Hooks](helm-commands/helm-get-hooks.md)
   * [Helm Get Manifest](helm-commands/helm-get-manifest.md)
+  * [Helm Get Notes](helm-commands/helm-get-notes.md)
   * [Helm Get Values](helm-commands/helm-get-values.md)
   * [Helm Upgrade](helm-commands/helm-upgrade.md)
   * [Helm Install](helm-commands/helm-install.md)
