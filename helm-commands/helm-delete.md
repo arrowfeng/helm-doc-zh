@@ -28,7 +28,7 @@ $ helm delete [flags] RELEASE-NAME [...]
       --tls-cert string       TLS 证书文件路径（默认 "$HELM-HOME/cert.pem"）
       --tls-hostname string   用于验证从服务器返回的证书上的主机名的服务器名称
       --tls-key string        TLS 密钥文件路径 (默认 "$HELM-HOME/key.pem")
-      --tls-verify            启用TLS进行请求并验证远程端
+      --tls-verify            启用 TLS 进行请求并验证远程端
 ```
 
 ## 继承父命令的选项
