@@ -1,5 +1,5 @@
 ---
-description: 获取 release 的信息
+description: 获取指定release 的信息
 ---
 
 # Helm Get
