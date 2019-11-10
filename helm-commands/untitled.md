@@ -65,23 +65,23 @@ $ helm init
 * [helm history](helm-history.md) - 获取 release 历史版本
 * [helm home](helm-home.md) - 显示 HELM—HOME 的目录
 * [helm init ](helm-init.md)- 初始化 Helm 客户端和服务端
-* [helm inspect](https://helm.sh/docs/helm/#helm-inspect) - 检出 chart
-* [helm install](https://helm.sh/docs/helm/#helm-install) - 安装 chart
-* [helm lint](https://helm.sh/docs/helm/#helm-lint) - 检查 chart 可能存在的问题 
-* [helm list](https://helm.sh/docs/helm/#helm-list) - 列出 releases
-* [helm package](https://helm.sh/docs/helm/#helm-package) - 归档 chart 目录
-* [helm plugin](https://helm.sh/docs/helm/#helm-plugin) - 增加，列出，移除 Helm 插件
-* [helm repo](https://helm.sh/docs/helm/#helm-repo) - 增加，列出，移除，更新和索引 chart 仓库
-* [helm reset](https://helm.sh/docs/helm/#helm-reset) - 从集群中卸载 Tiller
-* [helm rollback](https://helm.sh/docs/helm/#helm-rollback) - 回滚 release 到之前的版本
-* [helm search](https://helm.sh/docs/helm/#helm-search) - 根据关键字搜索 charts
-* [helm serve](https://helm.sh/docs/helm/#helm-serve) - 开启本地 http web server
-* [helm status](https://helm.sh/docs/helm/#helm-status) - 显示指定 release 的状态
-* [helm template](https://helm.sh/docs/helm/#helm-template) - 本地渲染模版
-* [helm test](https://helm.sh/docs/helm/#helm-test) - 测试 release
-* [helm upgrade](https://helm.sh/docs/helm/#helm-upgrade) - 升级 release
-* [helm verify](https://helm.sh/docs/helm/#helm-verify) - 根据指定路径验证 chart 已被签名并且有效
-* [helm version](https://helm.sh/docs/helm/#helm-version) - 打印客户端/服务端版本信息
+* [helm inspect ](helm-inspect.md)- 检出 chart
+* [helm install ](helm-install.md)- 安装 chart
+* [helm lint ](helm-lint.md)- 检查 chart 可能存在的问题 
+* [helm list](helm-list.md) - 列出 releases
+* [helm package](helm-package.md) - 归档 chart 目录
+* [helm plugin](helm-plugin.md) - 增加，列出，移除 Helm 插件
+* [helm repo ](helm-repo.md)- 增加，列出，移除，更新和索引 chart 仓库
+* [helm reset ](helm-reset.md)- 从集群中卸载 Tiller
+* [helm rollback](helm-rollback.md) - 回滚 release 到之前的版本
+* [helm search](helm-search.md) - 根据关键字搜索 charts
+* [helm serve](helm-serve.md) - 开启本地 http web server
+* [helm status](helm-status.md) - 显示指定 release 的状态
+* [helm template](helm-template.md) - 本地渲染模版
+* [helm test ](helm-test.md)- 测试 release
+* [helm upgrade](helm-upgrade.md) - 升级 release
+* [helm verify](helm-verify.md) - 根据指定路径验证 chart 已被签名并且有效
+* [helm version](helm-version.md) - 打印客户端/服务端版本信息
 
 
 
