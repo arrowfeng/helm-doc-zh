@@ -38,7 +38,50 @@ $ helm init
 * $HELM-TLS-HOSTNAME: hostname 或者 IP 地址被用来验证 Tiller 服务端证书，默认为127.0.0.1
 * $HELM-KEY-PASSPHRASE: 设置你的 PGP 私钥的密码短语。如果设置了，在签名 helm charts 时你将不会被提示输入密码。
 
+## 选项
 
+```text
+      --debug                           启用详细输出
+  -h, --help                            helm 帮助
+      --home string                     指定你的 Helm config，覆盖 $HELM-HOME（默认为～/.helm）
+      --host string                     指定 Tiller 的地址，覆盖 $HELM-HOST
+      --kube-context string             指定要操作的 Kubernetes context
+      --kubeconfig string               指定要使用的 kubeconfig 文件的绝对路径
+      --tiller-connection-timeout int   
+      The duration (in seconds) Helm will wait to establish a connection to Tiller (default 300)
+      --tiller-namespace string         Namespace of Tiller (default "kube-system")
+```
+
+## 其他命令
+
+
+
+* [helm completion](helm-completion.md) - 对于指定的shell（bash 或 zsh）产生自动补全脚本
+* [helm create](helm-create.md) - 使用给定的名字创建新的 chart
+* [helm delete ](helm-delete.md)- 从 Kubernetes 中删除指定的 release
+* [helm dependency](helm-dependency.md) - 管理 chart 的依赖
+* [helm fetch ](helm-fetch.md)- 从仓库下载 chart 并解压它到本地目录
+* [helm get](helm-get.md) - 下载指定名字的 release
+* [helm history](helm-history.md) - 获取 release 历史版本
+* [helm home](helm-home.md) - 显示 HELM—HOME 的目录
+* [helm init ](helm-init.md)- 初始化 Helm 客户端和服务端
+* [helm inspect](https://helm.sh/docs/helm/#helm-inspect) - 检出 chart
+* [helm install](https://helm.sh/docs/helm/#helm-install) - 安装 chart
+* [helm lint](https://helm.sh/docs/helm/#helm-lint) - 检查 chart 可能存在的问题 
+* [helm list](https://helm.sh/docs/helm/#helm-list) - 列出 releases
+* [helm package](https://helm.sh/docs/helm/#helm-package) - 归档 chart 目录
+* [helm plugin](https://helm.sh/docs/helm/#helm-plugin) - 增加，列出，移除 Helm 插件
+* [helm repo](https://helm.sh/docs/helm/#helm-repo) - 增加，列出，移除，更新和索引 chart 仓库
+* [helm reset](https://helm.sh/docs/helm/#helm-reset) - 从集群中卸载 Tiller
+* [helm rollback](https://helm.sh/docs/helm/#helm-rollback) - 回滚 release 到之前的版本
+* [helm search](https://helm.sh/docs/helm/#helm-search) - 根据关键字搜索 charts
+* [helm serve](https://helm.sh/docs/helm/#helm-serve) - 开启本地 http web server
+* [helm status](https://helm.sh/docs/helm/#helm-status) - 显示指定 release 的状态
+* [helm template](https://helm.sh/docs/helm/#helm-template) - 本地渲染模版
+* [helm test](https://helm.sh/docs/helm/#helm-test) - 测试 release
+* [helm upgrade](https://helm.sh/docs/helm/#helm-upgrade) - 升级 release
+* [helm verify](https://helm.sh/docs/helm/#helm-verify) - 根据指定路径验证 chart 已被签名并且有效
+* [helm version](https://helm.sh/docs/helm/#helm-version) - 打印客户端/服务端版本信息
 
 
 
