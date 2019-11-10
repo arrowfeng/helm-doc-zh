@@ -28,5 +28,5 @@ foo/
 
 “ helm create” 把目录作为参数。 如果给定路径中的目录不存在，Helm 将尝试随其创建它们。 如果给定的目标存在并且该目录中有文件，则冲突的文件将被覆盖，而其他文件将被保留。
 
-通过调用此命令创建的 chart 包含一个 Deployment，Ingress 和一个 Service。 要将其他 Kubernetes 资源与你的 chart 一起使用，请参阅[《chart 模板开发人员指南》](../using-helm/kubernetes-fa-hang-zhi-nan.md)。
+通过调用此命令创建的 chart 包含一个 Deployment，Ingress 和一个 Service。 要将其他 Kubernetes 资源与你的 chart 一起使用，请参阅[《chart 模板开发人员指南》](../developing-templates/)。
 
