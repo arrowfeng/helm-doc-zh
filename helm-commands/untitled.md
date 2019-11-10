@@ -53,8 +53,6 @@ $ helm init
 
 ## 其他命令
 
-
-
 * [helm completion](helm-completion.md) - 对于指定的shell（bash 或 zsh）产生自动补全脚本
 * [helm create](helm-create.md) - 使用给定的名字创建新的 chart
 * [helm delete ](helm-delete.md)- 从 Kubernetes 中删除指定的 release
