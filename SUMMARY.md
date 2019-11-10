@@ -1,7 +1,7 @@
 # Table of contents
 
-* [Table of contents](README.md)
-* [using-helm](using-helm/README.md)
+* [Helm 中文文档](README.md)
+* [Using Helm](using-helm/README.md)
   * [插件](using-helm/cha-jian.md)
   * [快速开始](using-helm/kuai-su-kai-shi.md)
   * [Kubernetes 发行指南](using-helm/kubernetes-fa-hang-zhi-nan.md)
@@ -11,7 +11,7 @@
   * [为 Helm 和 Tiller 配置 TLS/SSL](using-helm/wei-helm-he-tiller-pei-zhi-tlsssl.md)
   * [基于角色的访问控制](using-helm/ji-yu-jiao-se-de-fang-wen-kong-zhi.md)
   * [安全 Helm](using-helm/bao-hu-helm.md)
-* [helm-commands](helm-commands/README.md)
+* [Helm Commands](helm-commands/README.md)
   * [Helm](helm-commands/untitled.md)
   * [Helm Completion](helm-commands/helm-completion.md)
   * [Helm Create](helm-commands/helm-create.md)
@@ -56,4 +56,6 @@
   * [Helm Repo Remove](helm-commands/helm-repo-remove.md)
   * [Helm Init](helm-commands/helm-init.md)
   * [Helm Plugin Remove](helm-commands/helm-plugin-remove.md)
+* [Developing Templates](developing-templates/README.md)
+  * [Untitled](developing-templates/untitled.md)
 

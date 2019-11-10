@@ -1,2 +1,2 @@
-# using-helm
+# Using Helm
 

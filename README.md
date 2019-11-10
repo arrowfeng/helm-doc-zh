@@ -1,4 +1,4 @@
-# Table of contents
+# Helm 中文文档
 
 * [Welcome](./)
 
