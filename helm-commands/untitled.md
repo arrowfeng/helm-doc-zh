@@ -47,9 +47,8 @@ $ helm init
       --host string                     指定 Tiller 的地址，覆盖 $HELM-HOST
       --kube-context string             指定要操作的 Kubernetes context
       --kubeconfig string               指定要使用的 kubeconfig 文件的绝对路径
-      --tiller-connection-timeout int   
-      The duration (in seconds) Helm will wait to establish a connection to Tiller (default 300)
-      --tiller-namespace string         Namespace of Tiller (default "kube-system")
+      --tiller-connection-timeout int   等待与 Tiller 建立连接的超时时间（默认为300s）
+      --tiller-namespace string         Tiller 的命名空间（默认为 kube-system）
 ```
 
 ## 其他命令
